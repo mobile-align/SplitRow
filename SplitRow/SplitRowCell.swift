@@ -30,7 +30,7 @@ open class SplitRowCell<L: RowType, R: RowType>: Cell<SplitRowValue<L.Cell.Value
 		self.tableViewRight = SplitRowCellTableView()
         tableViewRight.backgroundColor = .clear
 		tableViewRight.separatorStyle = .none
-		tableViewRight.leftSeparatorStyle = .singleLine
+        tableViewRight.leftSeparatorStyle = .none
 		tableViewRight.translatesAutoresizingMaskIntoConstraints = false
         
 		contentView.addSubview(tableViewLeft)
@@ -83,8 +83,8 @@ open class SplitRowCell<L: RowType, R: RowType>: Cell<SplitRowValue<L.Cell.Value
 			self.contentView.addConstraint(NSLayoutConstraint(item: tableViewRight, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .height, multiplier: 1.0, constant: height))
 		}
 		
-		self.contentView.addConstraint(NSLayoutConstraint(item: tableViewLeft, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: row.rowLeftPercentage, constant: 0.0))
-		self.contentView.addConstraint(NSLayoutConstraint(item: tableViewRight, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: row.rowRightPercentage, constant: 0.0))
+		self.contentView.addConstraint(NSLayoutConstraint(item: tableViewLeft, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: row.rowLeftPercentage - 0.04, constant: 0.0))
+        self.contentView.addConstraint(NSLayoutConstraint(item: tableViewRight, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: row.rowRightPercentage - 0.04, constant: 0.0))
 	}
 	
 	private func rowCanBecomeFirstResponder(_ row: BaseRow?) -> Bool{
